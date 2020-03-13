@@ -5,6 +5,19 @@ const nutIocContainer = nutIoc();
 
 const mainAsync = async () => {
 
+    const ignoredDependencies = ['node_modules',
+        '.env',
+        '*.json',
+        '.idea',
+        '.git',
+        '.gitignore',
+        '*.iml',
+        '.*',
+        '*.md',
+        'LICENSE'];
+
+    nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
+
     nutIocContainer.useDependency({
         ServiceName: "authorBasicInfo",
         Service: ({ firstName: "Kenan", lastName: "Hancer" })
@@ -15,31 +28,7 @@ const mainAsync = async () => {
         Service: ({ authorBasicInfo }) => ({ ...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com" })
     });
 
-    nutIocContainer.useDependency({
-        ServiceName: "greetingHelper",
-        Service: ({ }) => ({
-            getFullName: ({ firstName, lastName }) => `${firstName} ${lastName}`
-        })
-    });
-
-    nutIocContainer.useDependency({
-        ServiceName: "greetingService",
-        Service: ({ greetingHelper: { getFullName } }) => ({
-            sayHello: ({ firstName, lastName }) => {
-
-                const fullName = getFullName({ firstName, lastName });
-
-                return `Hello ${fullName}`;
-            },
-            sayGoodbye: ({ firstName, lastName }) => {
-                const fullName = getFullName({ firstName, lastName });
-
-                return `Goodbye, ${fullName}`;
-            }
-        })
-    });
-
-    const { authorWithContacts, greetingService } = await nutIocContainer.build();
+    const { greetingService, authorWithContacts } = await nutIocContainer.build();
 
 
 
