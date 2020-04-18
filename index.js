@@ -197,14 +197,8 @@ const mainAsync = async () => {
 
     nutIocContainer.use({ dependencyPath: './swagger-definitions' });
 
-<<<<<<< HEAD
+
     const { authorWithContacts, greetingService, swaggerDefinitions } = await nutIocContainer.build();
-=======
-    const { authorWithContacts, greetingService, greetingServiceV2, swaggerDefinitions } = await nutIocContainer.build();
-
-
-    const helloMsvV2 = await greetingServiceV2.sayHello(authorWithContacts);
->>>>>>> load-dependencies-with-interceptors
 
     console.log(helloMsvV2);
 
