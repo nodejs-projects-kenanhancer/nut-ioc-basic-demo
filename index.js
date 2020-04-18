@@ -93,6 +93,68 @@ const mainAsync = async () => {
         }
     });
 
+<<<<<<< HEAD
+=======
+    nutIocContainer.useDependency({
+        ServiceName: "requestHandler",
+        Service: ({})=> ({
+            executeAsync: async (requestArgs) => {
+                console.log(requestArgs);
+
+                return "Hello World";
+            }
+        })
+    });
+
+    nutIocContainer.useDependency({
+        ServiceName: "greetingServiceV2",
+        Service: ({ requestHandler }) => {
+
+            return {
+                sayHello: async ({ firstName,lastName }) => {
+                    const requestArgs = {
+                        method: "GET",
+                        schemes: "http",
+                        host: "api.lbg.xyz",
+                        basePath: "/greeting-api/v1",
+                        path: "/sayHello",
+                        url: "http://api.lbg.xyz/greeting-api/v1/sayHello",
+                        payload: undefined,
+                        headers: {
+                            "firstName": firstName || '',
+                            "lastName": lastName || ''
+                        }
+                    };
+                    
+                    const response = await requestHandler.executeAsync(requestArgs);
+        
+                    return response;
+                },
+                sayGoodbye: async ({ firstName,lastName }) => {
+                    const requestArgs = {
+                        method: "GET",
+                        schemes: "http",
+                        host: "api.lbg.xyz",
+                        basePath: "/greeting-api/v1",
+                        path: "/sayGoodbye",
+                        url: "http://api.lbg.xyz/greeting-api/v1/sayGoodbye",
+                        payload: undefined,
+                        headers: {
+                            "firstName": firstName || '',
+                            "lastName": lastName || ''
+                        }
+                    };
+                    
+                    const response = await requestHandler.executeAsync(requestArgs);
+        
+                    return response;
+                }
+            };
+        
+        }
+    })
+
+>>>>>>> load-dependencies-with-interceptors
     nutIocContainer.useConfiguration({
         dependencyLoader: ({ loaders }) => {
             // console.log(loaders);
@@ -138,9 +200,18 @@ const mainAsync = async () => {
 
     nutIocContainer.use({ dependencyPath: './swagger-definitions' });
 
+<<<<<<< HEAD
     const { authorWithContacts, greetingService, swaggerDefinitions } = await nutIocContainer.build();
+=======
+    const { authorWithContacts, greetingService, greetingServiceV2, swaggerDefinitions } = await nutIocContainer.build();
 
 
+    const helloMsvV2 = await greetingServiceV2.sayHello(authorWithContacts);
+>>>>>>> load-dependencies-with-interceptors
+
+    console.log(helloMsvV2);
+
+    console.log();
 
 
     const helloMsg = greetingService.sayHello(authorWithContacts);
