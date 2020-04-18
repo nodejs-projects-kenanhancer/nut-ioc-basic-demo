@@ -93,9 +93,118 @@ const mainAsync = async () => {
         }
     });
 
-    const { authorWithContacts, greetingService } = await nutIocContainer.build();
+    nutIocContainer.useDependency({
+        ServiceName: "requestHandler",
+        Service: ({})=> ({
+            executeAsync: async (requestArgs) => {
+                console.log(requestArgs);
+
+                return "Hello World";
+            }
+        })
+    });
+
+    nutIocContainer.useDependency({
+        ServiceName: "greetingServiceV2",
+        Service: ({ requestHandler }) => {
+
+            return {
+                sayHello: async ({ firstName,lastName }) => {
+                    const requestArgs = {
+                        method: "GET",
+                        schemes: "http",
+                        host: "api.lbg.xyz",
+                        basePath: "/greeting-api/v1",
+                        path: "/sayHello",
+                        url: "http://api.lbg.xyz/greeting-api/v1/sayHello",
+                        payload: undefined,
+                        headers: {
+                            "firstName": firstName || '',
+                            "lastName": lastName || ''
+                        }
+                    };
+                    
+                    const response = await requestHandler.executeAsync(requestArgs);
+        
+                    return response;
+                },
+                sayGoodbye: async ({ firstName,lastName }) => {
+                    const requestArgs = {
+                        method: "GET",
+                        schemes: "http",
+                        host: "api.lbg.xyz",
+                        basePath: "/greeting-api/v1",
+                        path: "/sayGoodbye",
+                        url: "http://api.lbg.xyz/greeting-api/v1/sayGoodbye",
+                        payload: undefined,
+                        headers: {
+                            "firstName": firstName || '',
+                            "lastName": lastName || ''
+                        }
+                    };
+                    
+                    const response = await requestHandler.executeAsync(requestArgs);
+        
+                    return response;
+                }
+            };
+        
+        }
+    })
+
+    nutIocContainer.useConfiguration({
+        dependencyLoader: ({ loaders }) => {
+            // console.log(loaders);
+        },
+        dependencyFilter: ({ filters }) => {
+
+            // delete filters['defaultModuleFilter'];
+            // console.log(filters);
+        }
+    });
+
+    nutIocContainer.useDependencyLoader({
+        name: 'test-dependency-loader',
+        loader: ({ filePath, nameProvider }) => {
+            // console.log();
+        }
+    });
+
+    nutIocContainer.useDependencyLoader({
+        name: 'test-dependency-loader-2',
+        loader: ({ filePath, nameProvider }) => {
+            // console.log();
+        }
+    });
+
+    nutIocContainer.useDependencyFilter({
+        name: 'test-dependency-filter',
+        filter: ({ filePath, ignoredDependencies }) => {
+            // console.log();
+
+            return true;
+        }
+    });
+
+    nutIocContainer.useDependencyFilter({
+        name: 'test-dependency-filter-2',
+        filter: ({ filePath, ignoredDependencies }) => {
+            // console.log();
+
+            return true;
+        }
+    });
+
+    nutIocContainer.use({ dependencyPath: './swagger-definitions' });
+
+    const { authorWithContacts, greetingService, greetingServiceV2, swaggerDefinitions } = await nutIocContainer.build();
 
 
+    const helloMsvV2 = await greetingServiceV2.sayHello(authorWithContacts);
+
+    console.log(helloMsvV2);
+
+    console.log();
 
 
     const helloMsg = greetingService.sayHello(authorWithContacts);
