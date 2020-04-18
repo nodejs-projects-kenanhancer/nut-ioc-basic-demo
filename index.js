@@ -93,8 +93,6 @@ const mainAsync = async () => {
         }
     });
 
-<<<<<<< HEAD
-=======
     nutIocContainer.useDependency({
         ServiceName: "requestHandler",
         Service: ({})=> ({
@@ -154,7 +152,6 @@ const mainAsync = async () => {
         }
     })
 
->>>>>>> load-dependencies-with-interceptors
     nutIocContainer.useConfiguration({
         dependencyLoader: ({ loaders }) => {
             // console.log(loaders);
