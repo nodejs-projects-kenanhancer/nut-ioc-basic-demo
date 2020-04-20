@@ -1,0 +1,54 @@
+swagger: '2.0'
+info:
+  description: Turkish Greeting API
+  version: 1.0.0
+  title: Turkish Greeting API
+host: localhost:1080
+basePath: /greeting-turkish-api/v1
+schemes:
+  - http
+paths:
+  /sayHello:
+    get:
+      summary: Say Turkish Hello Message
+      operationId: greetingTurkishService.sayHello
+      produces:
+        - application/json
+      parameters:
+        - name: firstName
+          in: header
+          type: string
+          maxLength: 100
+          required: true
+          description: Person First Name.
+        - name: lastName
+          in: header
+          type: string
+          maxLength: 100
+          required: true
+          description: Person Last Name.
+      responses:
+        '200':
+          description: success
+  /sayGoodbye:
+    get:
+      summary: Say Turkish Goodbye Message
+      operationId: greetingTurkishService.sayGoodbye
+      produces:
+        - application/json
+      parameters:
+        - name: firstName
+          in: header
+          type: string
+          maxLength: 100
+          required: true
+          description: Person First Name.
+        - name: lastName
+          in: header
+          type: string
+          maxLength: 100
+          required: true
+          description: Person Last Name.
+      responses:
+        '200':
+          description: success

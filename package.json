@@ -2,11 +2,14 @@
   "name": "nut-ioc-basic-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-swagger-empty-controller": "nut-swagger generate-default-controller ./swagger-definitions/greeting-definition-yaml.yaml ./services/controllers --overwrite true --isEmptyBody true",
-    "generate-swagger-default-controller": "nut-swagger generate-default-controller ./swagger-definitions/greeting-definition-yaml.yaml ./services/controllers --overwrite true --isEmptyBody false"
+    "start": "node .",
+    "start:mock:server": "docker run -it -p 1080:1080 jamesdbloom/mockserver",
+    "setup:mocks": "node ./setup-mocks",
+    "generate-swagger-empty-controllers": "nut-swagger generate-default-controllers-from-dir ./src/swagger-definitions ./src/controllers --overwrite true --isEmptyBody false",
+    "generate-swagger-default-repositories": "nut-swagger generate-default-controllers-from-dir ./src/swagger-downstream-definitions ./src/repositories --overwrite true --isEmptyBody false"
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,17 @@
   },
   "homepage": "https://github.com/nodejs-projects-kenanhancer/nut-ioc-basic-demo#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "nut-ioc": "^1.0.3",
-    "nut-swagger": "^1.0.3"
+    "swagger-parser": "^9.0.1",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cucumber": "^6.0.5",
+    "mockserver-client": "^5.10.0",
+    "nut-swagger": "^1.0.8"
   }
 }

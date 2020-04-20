@@ -3,15 +3,15 @@ info:
   description: English Greeting API
   version: 1.0.0
   title: English Greeting API
-host: api.lbg.xyz
-basePath: /greeting-api/v1
+host: localhost:1080
+basePath: /greeting-english-api/v1
 schemes:
   - http
 paths:
   /sayHello:
     get:
       summary: Say English Hello Message
-      operationId: greetingService.sayHello
+      operationId: greetingEnglishService.sayHello
       produces:
         - application/json
       parameters:
@@ -33,7 +33,7 @@ paths:
   /sayGoodbye:
     get:
       summary: Say English Goodbye Message
-      operationId: greetingService.sayGoodbye
+      operationId: greetingEnglishService.sayGoodbye
       produces:
         - application/json
       parameters:

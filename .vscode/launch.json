@@ -11,7 +11,26 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/index.js"
+            "program": "${workspaceFolder}/app.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Setup Mock",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/setup-mocks.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug CLI",
+            "program": "${workspaceFolder}/node_modules/.bin/nut-swagger",
+            "args": ["generate-default-controllers-from-dir", "./src/swagger-downstream-definitions", "./src/repositories", "--overwrite", "true", "--isEmptyBody", "false"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }
