@@ -28,7 +28,7 @@ module.exports.Service = async ({ expressServer, AppEnv, swaggerDefinitions, swa
             res.send(html);
         });
 
-        AppEnv.ApiDocs.push(`http://localhost:${port}/api-docs/${basePath}`);
+        AppEnv.ApiDocs.push(`http://localhost:${port}/api-docs${basePath}`);
 
     }
 

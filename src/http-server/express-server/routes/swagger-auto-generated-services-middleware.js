@@ -41,7 +41,9 @@ module.exports.Service = async ({ expressServer, swaggerDefinitions, defaultRequ
                     // throw new Error(`${parts[1]} function couldn't be find in ${serviceId} dependency.`);
                 }
 
-                router[method](path, async (req, res, next) => {
+                const expressPath = path.replace('}', '').replace('{', ':');
+
+                router[method](expressPath, async (req, res, next) => {
 
                     req.swaggerDefinition = swaggerDefinition;
 
