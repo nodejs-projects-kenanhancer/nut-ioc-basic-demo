@@ -45,7 +45,7 @@ You can test microservice with **Swagger UI**, **CURL** or **Postman app**.
 
 Open the following link in browser so that you can make request from UI side.
 
-http://localhost:8080/api-docs//greeting-api/v1/
+http://localhost:8080/api-docs/greeting-api/v1/
 
 **CURL**
 
