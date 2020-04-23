@@ -1,6 +1,21 @@
 # nut-ioc-basic-demo
 
-In order to run service properly, 
+This is a demo project to use **nut-ioc** npm package all features. Notice that there are branch list below for this repository so that you can switch between branches for different usages of **nut-ioc** features.
+
+**nut-swagger-usage** branch is merged to master so master branch includes advanced scenarios.
+
+Branch list |
+------------------------------------------------------ |
+load-dependencies-with-dependencyPath |
+load-dependencies-with-dependencyPath-and_dynamically |
+load-dependencies-with-different-loaders |
+load-dependencies-with-interceptors |
+load-dependencies-with-new-loaders-and-filters |
+load-dependencies-with-programatic-notation |
+nut-swagger-usage |
+
+
+In order to run service properly,
 
 ## Running mock server
 
