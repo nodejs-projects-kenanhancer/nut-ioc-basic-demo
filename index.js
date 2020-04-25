@@ -195,14 +195,17 @@ const mainAsync = async () => {
         }
     });
 
-    nutIocContainer.use({ dependencyPath: './swagger-definitions' });
+    nutIocContainer.use({ dependencyPath: './src/swagger-definitions' });
 
 
-    const { authorWithContacts, greetingService, swaggerDefinitions } = await nutIocContainer.build();
+    const { authorWithContacts, greetingService, greetingServiceV2, swaggerDefinitions } = await nutIocContainer.build();
+
+
+    const helloMsvV2 = greetingServiceV2.sayHello(authorWithContacts);
 
     console.log(helloMsvV2);
+    
 
-    console.log();
 
 
     const helloMsg = greetingService.sayHello(authorWithContacts);
