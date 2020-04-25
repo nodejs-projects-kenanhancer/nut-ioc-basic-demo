@@ -1,11 +1,11 @@
 const nutIoc = require('nut-ioc');
-const commonIocContainerConfig = require('./app-ioc-container-configuration-common');
+const nutIocCommonConfiguration = require('./nut-ioc-common-configuration');
 
-module.exports.build = ({ dependencyContainerProvider }) => {
+module.exports.build = ({ nutIocConfigurationProvider }) => {
 
     const nutIocContainer = nutIoc();
 
-    commonIocContainerConfig.use({ nutIocContainer });
+    nutIocCommonConfiguration.use({ nutIocContainer });
 
     nutIocContainer.useConfiguration({
         dependencyLoader: ({ loaders }) => {
@@ -21,21 +21,21 @@ module.exports.build = ({ dependencyContainerProvider }) => {
     nutIocContainer.useDependencyLoader({
         name: 'test-dependency-loader',
         loader: ({ filePath, nameProvider }) => {
-            // console.log();
+            // console.log(filePath);
         }
     });
 
     nutIocContainer.useDependencyLoader({
         name: 'test-dependency-loader-2',
         loader: ({ filePath, nameProvider }) => {
-            // console.log();
+            // console.log(filePath);
         }
     });
 
     nutIocContainer.useDependencyFilter({
         name: 'test-dependency-filter',
         filter: ({ filePath, ignoredDependencies }) => {
-            // console.log();
+            // console.log(filePath);
 
             return true;
         }
@@ -44,7 +44,7 @@ module.exports.build = ({ dependencyContainerProvider }) => {
     nutIocContainer.useDependencyFilter({
         name: 'test-dependency-filter-2',
         filter: ({ filePath, ignoredDependencies }) => {
-            // console.log();
+            // console.log(filePath);
 
             return true;
         }
@@ -60,8 +60,7 @@ module.exports.build = ({ dependencyContainerProvider }) => {
 
             if (serviceName === 'greetingService') {
                 return [errorInterceptor, appLoggerInterceptor];
-            }
-            else if (namespace === 'repositories') {
+            } else if (namespace === 'repositories') {
                 return [timingInterceptor, errorInterceptor, appLoggerInterceptor];
             } else if (ignoredInterceptors.some(item => item === serviceName)) {
                 return [];
@@ -71,7 +70,7 @@ module.exports.build = ({ dependencyContainerProvider }) => {
         }
     });
 
-    dependencyContainerProvider && dependencyContainerProvider(nutIocContainer);
+    nutIocConfigurationProvider && nutIocConfigurationProvider({ nutIocContainer });
 
     return nutIocContainer.build();
 };

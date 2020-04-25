@@ -1,10 +1,12 @@
 require('dotenv').config();
 
-const appIocContainer = require('./app-ioc-container-provider').get({ name: process.env.IOC_CONTAINER_NAME });
+const {getNutIocContainer} = require('./nut-ioc-container-configurations');
+
+const nutIocContainer = getNutIocContainer({name: process.env.NUT_IOC_CONTAINER_NAME});
 
 const mainAsync = async () => {
 
-    const { httpServer } = await appIocContainer.build({});
+    const { httpServer } = await nutIocContainer.build({});
 
     await httpServer.start({});
 };
