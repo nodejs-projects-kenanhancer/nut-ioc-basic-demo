@@ -34,6 +34,6 @@
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
     "mockserver-client": "^5.10.0",
-    "nut-swagger": "^1.0.8"
+    "nut-swagger": "^1.1.0"
   }
 }

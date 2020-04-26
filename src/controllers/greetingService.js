@@ -7,7 +7,7 @@ module.exports.Service = ({ repositories: { greetingEnglishService, greetingTurk
             let response = "";
 
             if (language === "EN") {
-                    response = await greetingEnglishService.sayHello({ firstName, lastName });
+                response = await greetingEnglishService.sayHello({ firstName, lastName });
             }
             else if (language === "TR") {
                 response = await greetingTurkishService.sayHello({ firstName, lastName });

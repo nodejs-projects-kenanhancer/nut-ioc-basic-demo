@@ -11,7 +11,7 @@ paths:
   /sayHello:
     get:
       summary: Say Turkish Hello Message
-      operationId: greetingTurkishService.sayHello
+      operationId: controllers.greetingTurkishService.sayHello
       produces:
         - application/json
       parameters:
@@ -33,7 +33,7 @@ paths:
   /sayGoodbye:
     get:
       summary: Say Turkish Goodbye Message
-      operationId: greetingTurkishService.sayGoodbye
+      operationId: controllers.greetingTurkishService.sayGoodbye
       produces:
         - application/json
       parameters:
