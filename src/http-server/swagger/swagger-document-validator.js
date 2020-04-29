@@ -11,8 +11,7 @@ module.exports.Service = ({ }) =>
 
                 await swaggerParser.validate(newDef, (err, api) => {
                     if (err) {
-                        console.error(err);
-                        throw new Error('Not a valid swagger  ' + error.toString());
+                        throw new Error('SWAGGER ERROR: Not a valid swagger  ' + error.toString());
                     } else {
                         console.log(`Swagger is validated. API name: ${api.info.title}, Version: ${api.info.version}`);
                     }

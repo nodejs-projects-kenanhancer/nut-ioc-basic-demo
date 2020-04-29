@@ -48,7 +48,7 @@ const createExpectation = async (request, response) => {
             console.log(`Stub created: ${httpRequest.method} ${target}${httpRequest.path}`);
         })
         .catch((err) => {
-            console.log('Error while creating stubs: ', err);
+            console.error('MOCK ERROR: Error while creating stubs: ', err);
         });
 };
 
@@ -60,7 +60,7 @@ module.exports.Service = ({ requestHandler }) => ({
                 console.log(`Mock server reset: [${target}]`);
             })
             .catch(err => {
-                console.error(`Error resetting mock server: [${target}]`, err);
+                console.error(`MOCK ERROR: Error resetting mock server: [${target}]`, err);
                 process.exit(1);
             })
     ),

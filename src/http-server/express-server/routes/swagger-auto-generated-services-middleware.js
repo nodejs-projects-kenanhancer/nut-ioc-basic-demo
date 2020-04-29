@@ -21,7 +21,7 @@ module.exports.Service = async ({ expressServer, swaggerDefinitions, defaultRequ
                 const actionFunc = await dependencyProvider(operationId);
 
                 if (!actionFunc) {
-                    console.error(`ERROR: Express Swagger Middleware couldn't find ${servicoperationIdeId} dependency in Dependency Injection Framework.`);
+                    console.error(`SWAGGER ERROR: Express Swagger Middleware couldn't find ${operationId} dependency in nut-ioc Dependency Injection Framework.`);
                     continue;
                     // throw new Error(`${serviceId} dependency couldn't be find in Dependency Injection Framework.`);
                 }

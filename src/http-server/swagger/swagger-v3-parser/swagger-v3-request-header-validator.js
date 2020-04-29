@@ -8,7 +8,7 @@ module.exports.Service = ({ }) => ({
 
         if (!parameter || required) {
             if (!parameter || !isHeaderInRequest) {
-                throw new Error(`${name} header is required`);
+                throw new Error(`SWAGGER ERROR: ${name} header is required`);
             }
         }
 
@@ -18,22 +18,22 @@ module.exports.Service = ({ }) => ({
             if (type === 'string') {
 
                 if (minLength && headerValue.length < minLength) {
-                    throw new Error(`${name} header value's minLength can be min ${headerValue.length}`);
+                    throw new Error(`SWAGGER ERROR: ${name} header value's minLength can be min ${headerValue.length}`);
                 }
 
                 if (maxLength && headerValue.length > maxLength) {
-                    throw new Error(`${name} header value's maxLength can be max ${headerValue.length}`);
+                    throw new Error(`SWAGGER ERROR: ${name} header value's maxLength can be max ${headerValue.length}`);
                 }
 
                 if (enumValue && !enumValue.includes(headerValue)) {
-                    throw new Error(`${name} header value can be any of ${enumValue}`);
+                    throw new Error(`SWAGGER ERROR: ${name} header value can be any of ${enumValue}`);
                 }
 
                 if (regex) {
                     const found = headerValue.match(regex);
 
                     if (!found) {
-                        throw new Error(`${name} header value's pattern doesn't match ${regex}`);
+                        throw new Error(`SWAGGER ERROR: ${name} header value's pattern doesn't match ${regex}`);
                     }
                 }
 
