@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports.use = ({ nutIocContainer }) => {
 
     nutIocContainer.useDependency({
@@ -10,5 +12,11 @@ module.exports.use = ({ nutIocContainer }) => {
         ServiceName: "authorWithContacts",
         Namespace: undefined,
         Service: ({ authorBasicInfo }) => ({ ...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com" })
+    });
+
+    nutIocContainer.useDependency({
+        ServiceName: "appEnv",
+        Namespace: undefined,
+        Service: { ...process.env }
     });
 }

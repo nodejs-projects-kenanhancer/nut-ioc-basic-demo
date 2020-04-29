@@ -34,6 +34,18 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
         }
     });
 
+    // nutIocContainer.useDependencyHook({
+    //     Name: "",
+    //     Hook: ({ swaggerDownstreamDefinitions, appEnv }) => {
+
+    //         Object.entries(appEnv).filter(([key, value]) => key.includes('ds.')).forEach(([key, value]) => {
+    //             const [group, serviceName, fieldName] = key.split('.');
+
+    //             swaggerDownstreamDefinitions[serviceName][fieldName] = value;
+    //         });
+    //     }
+    // });
+
     nutIocConfigurationProvider && nutIocConfigurationProvider({ nutIocContainer });
 
     return nutIocContainer.build();

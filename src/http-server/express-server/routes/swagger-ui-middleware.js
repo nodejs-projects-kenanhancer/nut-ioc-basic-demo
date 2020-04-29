@@ -1,12 +1,12 @@
 const swaggerUiMiddleware = require('swagger-ui-express');
 
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = async ({ expressServer, AppEnv, swaggerDefinitions, swaggerDownstreamDefinitions }) => {
+module.exports.Service = async ({ expressServer, appEnv, swaggerDefinitions, swaggerDownstreamDefinitions }) => {
 
     const { app, express } = expressServer.configProvider;
 
-    const { port } = AppEnv;
-    AppEnv.ApiDocs = [];
+    const { port } = appEnv;
+    appEnv.ApiDocs = [];
 
     const options = {
         explorer: true
@@ -28,7 +28,7 @@ module.exports.Service = async ({ expressServer, AppEnv, swaggerDefinitions, swa
             res.send(html);
         });
 
-        AppEnv.ApiDocs.push(`http://localhost:${port}/api-docs${basePath}`);
+        appEnv.ApiDocs.push(`http://localhost:${port}/api-docs${basePath}`);
 
     }
 

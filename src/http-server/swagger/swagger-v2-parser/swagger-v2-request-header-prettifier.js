@@ -2,7 +2,7 @@ const { capitalize } = require('nut-ioc/helpers/string-helper');
 
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
 module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
-    ({ swaggerDefinitions, url, baseUrl, headers, method, }) => {
+    ({ swaggerDefinitions, url, baseUrl, headers, method, body }) => {
 
         const methodLowerCase = method.toLowerCase();
 
@@ -10,7 +10,7 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
 
         const pathUrl = queryStringArray[0];
 
-        const splittedPathUrl = pathUrl.split('/');
+        const splittedPathUrl = pathUrl.split('/').slice(1);
 
 
 
@@ -19,7 +19,7 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
         // const {schemes, host, basePath, serviceId, swagger_paths, parameters, consumes, produces} = swaggerDefinition;
         const { paths: swagger_paths, parameters: swagger_parameters } = swaggerDefinition;
 
-        const [swagger_path, swagger_pathMethods] = Object.entries(swagger_paths).find(([key]) => key.split('/').some(item => !item.includes('{') && splittedPathUrl.includes(item))) || [];
+        const [swagger_path, swagger_pathMethods] = Object.entries(swagger_paths).find(([key]) => key.split('/').slice(1).some(item => !item.includes('{') && splittedPathUrl.includes(item))) || [];
 
         const [, swagger_pathMethod] = Object.entries(swagger_pathMethods).find(([key, value]) => key.toLowerCase() === methodLowerCase) || [];
 
@@ -65,7 +65,7 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
                 methodParameterObj = swagger_pathMethodParameter;
             }
 
-            const paramValue = swaggerV2RequestHeaderValidator.validate({ headers, queryParams, pathParams, swagger_pathMethodParameter: methodParameterObj });
+            const paramValue = swaggerV2RequestHeaderValidator.validate({ headers, queryParams, pathParams, body, swagger_pathMethodParameter: methodParameterObj });
 
             args[capitalize(pathMethodParameterName)] = paramValue;
         });

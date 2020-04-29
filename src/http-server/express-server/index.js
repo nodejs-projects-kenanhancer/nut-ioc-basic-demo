@@ -1,20 +1,11 @@
 const express = require('express');
 
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = async ({ errorMiddleware, dependencyContainer: { useDependency } }) => {
+module.exports.Service = async ({ errorMiddleware, appEnv, dependencyContainer: { useDependency } }) => {
 
     const app = express();
 
-    const port = process.env.PORT || 8080;
-
-    const appEnv = { port };
-
-    await useDependency({
-        ServiceName: "AppEnv",
-        Namespace: "",
-        Service: ({ }) => (appEnv),
-        Interceptor: ({ }) => []
-    });
+    const { port = 8080 } = appEnv;
 
     app.use(express.json()); // using bodyParser to parse JSON bodies into JS objects
 

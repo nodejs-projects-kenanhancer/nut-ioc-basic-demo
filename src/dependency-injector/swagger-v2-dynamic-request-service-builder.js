@@ -18,7 +18,7 @@ module.exports.Service = async ({}) => {
                     const parts = operationId && operationId.split('.');
 
                     if (!parts || (parts && parts.length < 2)) {
-                        throw new Error(`${path} in Swagger definition doesn't have a proper operationId. Syntax should be like this "Greeting.sayHello"`)
+                        throw new Error(`SWAGGER ERROR: ${path} in Swagger definition doesn't have a proper operationId. Syntax should be like this "Greeting.sayHello"`)
                     }
 
                     let namespace;
@@ -95,7 +95,7 @@ module.exports.Service = async ({}) => {
                                 }
 
                                 if (argumentException) {
-                                    throw new Error(`Error: Swagger request function needs below parameters.\n${requiredParameters}. Arguments that are taken are ${argumentNames}`)
+                                    throw new Error(`SWAGGER ERROR: Swagger request function needs below parameters.\n${requiredParameters}. Arguments that are taken are ${argumentNames}`)
                                 }
                             }
 
