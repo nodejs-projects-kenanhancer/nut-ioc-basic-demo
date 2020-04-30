@@ -15,6 +15,8 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
 
     nutIocContainer.use({ dependencyPath: './src/request-handler' });
 
+    nutIocContainer.use({ dependencyPath: './src/dependency-hooks' });
+
     nutIocContainer.use({ dependencyPath: './src/swagger-definitions' });
 
     nutIocContainer.use({ dependencyPath: './src/swagger-downstream-definitions' });
