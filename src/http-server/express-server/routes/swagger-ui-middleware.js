@@ -5,7 +5,6 @@ module.exports.Service = async ({ expressServer, appEnv, swaggerDefinitions, swa
 
     const { app, express } = expressServer.configProvider;
 
-    const { port } = appEnv;
     appEnv.ApiDocs = [];
 
     const options = {
@@ -18,7 +17,7 @@ module.exports.Service = async ({ expressServer, appEnv, swaggerDefinitions, swa
 
     for (const swaggerDefinitionName in swaggers) {
         const swaggerDefinition = swaggers[swaggerDefinitionName]
-        const { basePath } = swaggerDefinition;
+        const { host, basePath } = swaggerDefinition;
 
         router.use(basePath, swaggerUiMiddleware.serve);
 
@@ -28,7 +27,7 @@ module.exports.Service = async ({ expressServer, appEnv, swaggerDefinitions, swa
             res.send(html);
         });
 
-        appEnv.ApiDocs.push(`http://localhost:${port}/api-docs${basePath}`);
+        appEnv.ApiDocs.push(`http://${host}/api-docs${basePath}`);
 
     }
 

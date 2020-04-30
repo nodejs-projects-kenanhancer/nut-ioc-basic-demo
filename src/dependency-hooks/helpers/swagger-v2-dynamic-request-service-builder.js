@@ -1,6 +1,6 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = async ({}) => {
-    return ({
+module.exports.Service = async ({}) =>
+    ({
         build: async ({swaggerDefinition}) => {
 
             const requests = {};
@@ -218,4 +218,3 @@ module.exports.Service = async ({}) => {
             return requests;
         }
     });
-};

@@ -8,8 +8,8 @@
     "start": "node .",
     "start:mock:server": "docker run -it -p 1080:1080 jamesdbloom/mockserver",
     "setup:mocks": "node ./setup-mocks",
-    "generate-swagger-empty-controllers": "nut-swagger generate-default-controllers-from-dir ./src/swagger-definitions ./src/controllers --overwrite true --isEmptyBody false",
-    "generate-swagger-default-repositories": "nut-swagger generate-default-controllers-from-dir ./src/swagger-downstream-definitions ./src/repositories --overwrite true --isEmptyBody false"
+    "generate-swagger-empty-controllers": "nut-swagger generate-default-controllers-from-dir ./src/swagger-definitions ./src/controllers --overwrite true --isEmptyFunctionBody true --isShortFunctionBodySyntax true",
+    "generate-swagger-default-repositories": "nut-swagger generate-default-controllers-from-dir ./src/swagger-downstream-definitions ./src/repositories --overwrite true --isEmptyFunctionBody false --isShortFunctionBodySyntax true"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nut-ioc": "^1.0.5",
+    "nut-ioc": "^1.0.6",
     "swagger-parser": "^9.0.1",
     "swagger-ui-express": "^4.1.4"
   },
@@ -34,6 +34,6 @@
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
     "mockserver-client": "^5.10.0",
-    "nut-swagger": "^1.1.0"
+    "nut-swagger": "^1.1.2"
   }
 }

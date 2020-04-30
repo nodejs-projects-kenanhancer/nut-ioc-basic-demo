@@ -1,8 +1,7 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ requestHandler }) => {
-
-    return {
-        sayHello: async ({ firstName,lastName }) => {
+module.exports.Service = ({ requestHandler }) =>
+    ({
+        sayHello: async ({ firstName, lastName }) => {
             const requestArgs = {
                 method: "GET",
                 schemes: "http",
@@ -21,7 +20,7 @@ module.exports.Service = ({ requestHandler }) => {
 
             return response;
         },
-        sayGoodbye: async ({ firstName,lastName }) => {
+        sayGoodbye: async ({ firstName, lastName }) => {
             const requestArgs = {
                 method: "GET",
                 schemes: "http",
@@ -40,6 +39,4 @@ module.exports.Service = ({ requestHandler }) => {
 
             return response;
         }
-    };
-
-};
+    });
