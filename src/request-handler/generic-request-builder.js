@@ -1,8 +1,8 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ }) =>
-    ({ requestArgs, mockServiceRequest = false }) => {
+module.exports.Service = ({}) =>
+    ({requestArgs, mockServiceRequest = false}) => {
 
-        const { method, url, basePath, path, payload, headers } = requestArgs;
+        const {method, url, basePath, path, payload, headers} = requestArgs;
 
         const request = {
             method,
@@ -16,10 +16,10 @@ module.exports.Service = ({ }) =>
                     type: 'JSON',
                     // json: JSON.stringify(payload),
                     contentType: 'application/json'
-                }
+                };
             }
         } else {
-            request.data = payload
+            request.data = payload;
         }
 
         return request;
