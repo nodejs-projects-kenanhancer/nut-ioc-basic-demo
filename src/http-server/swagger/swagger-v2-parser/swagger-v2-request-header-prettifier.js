@@ -38,7 +38,7 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
                     return acc;
                 }
 
-                return { ...acc, [cur.replace(/[{}]/g, '').toLowerCase()]: splittedPathUrl[index] };
+                return { ...acc, [cur.replace(/[{}]/g, '').toLowerCase()]: splittedPathUrl[index - 1] };
             }, {});
         }
 
