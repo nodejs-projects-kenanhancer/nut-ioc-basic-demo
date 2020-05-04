@@ -1,23 +1,30 @@
 require('dotenv').config();
+const { capitalize } = require('nut-ioc/helpers/string-helper');
 
-module.exports.use = ({nutIocContainer}) => {
+module.exports.use = ({ nutIocContainer }) => {
 
     nutIocContainer.useDependency({
         ServiceName: "authorBasicInfo",
         Namespace: undefined,
-        Service: ({firstName: "Kenan", lastName: "Hancer"})
+        Service: ({ firstName: "Kenan", lastName: "Hancer" })
     });
 
     nutIocContainer.useDependency({
         ServiceName: "authorWithContacts",
         Namespace: undefined,
-        Service: ({authorBasicInfo}) => ({...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com"})
+        Service: ({ authorBasicInfo }) => ({ ...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com" })
     });
 
     nutIocContainer.useDependency({
         ServiceName: "appEnv",
         Namespace: undefined,
-        Service: {...process.env}
+        Service: { ...process.env }
+    });
+
+    nutIocContainer.useDependency({
+        ServiceName: "capitalize",
+        Namespace: undefined,
+        Service: ({ }) => capitalize
     });
 
     // nutIocContainer.useDependency({

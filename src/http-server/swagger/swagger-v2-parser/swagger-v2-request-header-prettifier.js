@@ -1,7 +1,5 @@
-const { capitalize } = require('nut-ioc/helpers/string-helper');
-
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
+module.exports.Service = ({ swaggerV2RequestHeaderValidator, capitalize }) =>
     ({ swaggerDefinitions, url, baseUrl, headers, method, body }) => {
 
         const methodLowerCase = method.toLowerCase();

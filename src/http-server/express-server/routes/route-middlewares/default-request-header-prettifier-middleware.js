@@ -1,7 +1,5 @@
-const { capitalize } = require('nut-ioc/helpers/string-helper');
-
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ }) =>
+module.exports.Service = ({ capitalize }) =>
     async (req, res, next) => {
 
         const { headers } = req;
