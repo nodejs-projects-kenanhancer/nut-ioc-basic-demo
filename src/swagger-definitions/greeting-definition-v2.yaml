@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   title: Greeting API v2
 host: localhost:1080
-basePath: /greeting-api/v2
+basePath: /greeting-api/v1
 schemes:
   - http
 paths:

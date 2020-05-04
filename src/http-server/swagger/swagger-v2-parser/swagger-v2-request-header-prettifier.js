@@ -19,7 +19,7 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator }) =>
         // const {schemes, host, basePath, serviceId, swagger_paths, parameters, consumes, produces} = swaggerDefinition;
         const { paths: swagger_paths, parameters: swagger_parameters } = swaggerDefinition;
 
-        const [swagger_path, swagger_pathMethods] = Object.entries(swagger_paths).find(([key]) => key.split('/').slice(1).some(item => !item.includes('{') && splittedPathUrl.includes(item))) || [];
+        const [swagger_path, swagger_pathMethods] = Object.entries(swagger_paths).find(([key]) => key === pathUrl || key.split('/').slice(1).every((item, index) => item.includes('{') || splittedPathUrl[index] === item)) || [];
 
         const [, swagger_pathMethod] = Object.entries(swagger_pathMethods).find(([key, value]) => key.toLowerCase() === methodLowerCase) || [];
 

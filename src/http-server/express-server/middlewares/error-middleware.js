@@ -1,5 +1,5 @@
 module.exports.ServiceName = ''; //fileName if empty,null or undefined
-module.exports.Service = ({}) => async (error, req, res, next) => {
+module.exports.Service = ({ }) => async (error, req, res, next) => {
     // downstream error
     if (error.message && error.message.error) {
         error = error.message.error;
@@ -10,7 +10,7 @@ module.exports.Service = ({}) => async (error, req, res, next) => {
     }
 
     const responseBody = error.message || 'ERROR';
-    res.statusCode = error.code;
+    res.statusCode = error.statusCode || res.statusCode;
 
     if ([400, 401, 403, 404, 405, 406, 412, 415, 500, 501].includes(res.statusCode)) {
         res.send(responseBody);

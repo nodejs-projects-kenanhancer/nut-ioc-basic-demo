@@ -43,7 +43,7 @@ module.exports.Service = ({ swaggerV2FieldValidators }) => ({
             value = body;
         }
 
-        Object.values(swaggerV2FieldValidators).forEach(fieldValidator => fieldValidator({ value, type, minLength, maxLength, enumValue, regex }));
+        Object.values(swaggerV2FieldValidators).forEach(fieldValidator => fieldValidator({ name, value, type, minLength, maxLength, enumValue, regex }));
 
         return value;
     }

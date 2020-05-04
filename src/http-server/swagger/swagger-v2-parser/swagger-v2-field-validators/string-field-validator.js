@@ -1,6 +1,6 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
 module.exports.Service = ({ }) =>
-    ({ value, type, minLength, maxLength, enumValue, regex }) => {
+    ({ name, value, type, minLength, maxLength, enumValue, regex }) => {
         if (value && value !== '' && type === 'string') {
 
             if (minLength && value.length < minLength) {
