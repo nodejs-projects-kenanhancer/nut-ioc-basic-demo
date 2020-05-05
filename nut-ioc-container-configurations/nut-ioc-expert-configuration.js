@@ -11,6 +11,8 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
 
     nutIocContainer.use({ dependencyPath: './src/constants' });
 
+    nutIocContainer.use({ dependencyPath: './src/custom-errors' });
+
     nutIocContainer.use({ dependencyPath: './src/log-handler' });
 
     nutIocContainer.use({ dependencyPath: './src/request-handler' });
@@ -30,7 +32,7 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
 
     nutIocContainer.use({
         dependencyPath: './src/repositories',
-        interceptor: ({ interceptors: { timingInterceptor, errorInterceptor, appLoggerInterceptor } }) => [timingInterceptor, errorInterceptor, appLoggerInterceptor]
+        interceptor: ({ interceptors: { timingInterceptor, errorInterceptor, appLoggerInterceptor, downstreamErrorInterceptor } }) => [timingInterceptor, downstreamErrorInterceptor, appLoggerInterceptor]
     });
 
     nutIocConfigurationProvider && nutIocConfigurationProvider({ nutIocContainer });

@@ -1,7 +1,7 @@
 const swaggerParser = require("swagger-parser");
 
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ }) =>
+module.exports.Service = ({ clientErrors: { SwaggerError } }) =>
     ({
         validate: async ({ swaggerDefinitions }) => {
 
@@ -11,7 +11,7 @@ module.exports.Service = ({ }) =>
 
                 await swaggerParser.validate(newDef, (err, api) => {
                     if (err) {
-                        throw new Error('SWAGGER ERROR: Not a valid swagger  ' + err.toString());
+                        throw new SwaggerError({ message: 'SWAGGER ERROR: Not a valid swagger  ' + err.toString() });
                     } else {
                         console.log(`Swagger is validated. API name: ${api.info.title}, Version: ${api.info.version}`);
                     }

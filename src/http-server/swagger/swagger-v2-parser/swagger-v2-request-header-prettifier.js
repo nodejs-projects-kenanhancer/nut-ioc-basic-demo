@@ -1,5 +1,5 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ swaggerV2RequestHeaderValidator, capitalize }) =>
+module.exports.Service = ({ swaggerV2RequestHeaderValidator, capitalize, clientErrors: { SwaggerError } }) =>
     ({ swaggerDefinitions, url, baseUrl, headers, method, body }) => {
 
         const methodLowerCase = method.toLowerCase();
@@ -14,12 +14,19 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator, capitalize }) =>
 
         const swaggerDefinition = swaggerDefinitions && Object.values(swaggerDefinitions).find(def => def.basePath === baseUrl) || {};
 
+        if (!swaggerDefinition) {
+            throw new SwaggerError({ message: `Bad request:: Swagger ${baseUrl} base url not found in Swagger definiton.` });
+        }
+
         // const {schemes, host, basePath, serviceId, swagger_paths, parameters, consumes, produces} = swaggerDefinition;
         const { paths: swagger_paths, parameters: swagger_parameters } = swaggerDefinition;
 
         const [swagger_path, swagger_pathMethods] = Object.entries(swagger_paths).find(([key]) => key === pathUrl || key.split('/').slice(1).every((item, index) => item.includes('{') || splittedPathUrl[index] === item)) || [];
 
-        const [, swagger_pathMethod] = Object.entries(swagger_pathMethods).find(([key, value]) => key.toLowerCase() === methodLowerCase) || [];
+        if (!swagger_path) {
+            throw new SwaggerError({ message: `Bad request:: Swagger ${pathUrl} path not found in Swagger definition.` });
+        }
+
 
         let queryParams, pathParams;
 
@@ -38,6 +45,12 @@ module.exports.Service = ({ swaggerV2RequestHeaderValidator, capitalize }) =>
 
                 return { ...acc, [cur.replace(/[{}]/g, '').toLowerCase()]: splittedPathUrl[index - 1] };
             }, {});
+        }
+
+        const [, swagger_pathMethod] = Object.entries(swagger_pathMethods).find(([key, value]) => key.toLowerCase() === methodLowerCase) || [];
+
+        if (!swagger_pathMethod) {
+            throw new SwaggerError({ message: `Bad request:: Swagger ${method} method not found in ${swagger_path} path in Swagger definition.` });
         }
 
         const args = {};

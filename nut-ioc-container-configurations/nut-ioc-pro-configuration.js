@@ -55,13 +55,13 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
     nutIocContainer.use({
         dependencyPath: './src',
         ignoredDependencies: [],
-        interceptor: ({ serviceName, namespace, dependencyProvider, interceptors: { timingInterceptor, errorInterceptor, appLoggerInterceptor } }) => {
+        interceptor: ({ serviceName, namespace, dependencyProvider, interceptors: { timingInterceptor, errorInterceptor, appLoggerInterceptor, downstreamErrorInterceptor } }) => {
             // const {timingInterceptor, errorInterceptor, appLoggerInterceptor} = dependencyProvider(['timingInterceptor', 'errorInterceptor', 'appLoggerInterceptor']);
 
             if (serviceName === 'greetingService') {
                 return [errorInterceptor, appLoggerInterceptor];
             } else if (namespace === 'repositories') {
-                return [timingInterceptor, errorInterceptor, appLoggerInterceptor];
+                return [timingInterceptor, downstreamErrorInterceptor, appLoggerInterceptor];
             } else if (ignoredInterceptors.some(item => item === serviceName)) {
                 return [];
             }
