@@ -28,9 +28,9 @@ module.exports.build = ({ nutIocConfigurationProvider }) => {
                 return genericRequestBuilder({ requestArgs: options, mockServiceRequest: true });
             }
         }),
-        Interceptor: ({ interceptors: { timingInterceptor, errorInterceptor, downstreamErrorInterceptor, appLoggerInterceptor } }) => {
+        Interceptor: ({ interceptors: { timingInterceptor, errorInterceptor, appLoggerInterceptor } }) => {
 
-            return [timingInterceptor, downstreamErrorInterceptor, appLoggerInterceptor];
+            return [timingInterceptor, errorInterceptor, appLoggerInterceptor];
         }
     });
 
