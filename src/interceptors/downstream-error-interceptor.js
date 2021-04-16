@@ -2,7 +2,7 @@ module.exports = {
     IsInterceptor: true,
     ServiceName: "",
     Namespace: "",
-    Service: ({ appLogger, serverErrors: { DownstreamError } }) =>
+    Service: ({ appLogger, customErrors: { serverErrors: { DownstreamError } } }) =>
         async (environment, next) => {
 
             let result;

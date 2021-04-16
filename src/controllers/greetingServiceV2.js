@@ -1,5 +1,5 @@
 module.exports.ServiceName = ""; //fileName if empty,null or undefined
-module.exports.Service = ({ repositories: { greetingEnglishService, greetingTurkishService } }) => ({
+module.exports.Service = ({ repositories: { kenan: { hancer: { greetingEnglishService, greetingTurkishService } } } }) => ({
     sayHello: async ({ firstName, lastName, language }) => {
 
         let response = "";

@@ -4,7 +4,7 @@ const nutIocContainer = getNutIocContainer({ name: 'nut-ioc-test-configuration' 
 
 const mainAsync = async () => {
 
-    const { repositories: { greetingEnglishService, greetingTurkishService, greetingHelperService }, mockHelper: { createExpectation, resetMockServer, setupExpectation } } = await nutIocContainer.build({});
+    const { repositories: { kenan: { hancer: { greetingEnglishService, greetingTurkishService, greetingHelperService } } }, mockHelper: { createExpectation, resetMockServer, setupExpectation } } = await nutIocContainer.build({});
 
     await resetMockServer();
 

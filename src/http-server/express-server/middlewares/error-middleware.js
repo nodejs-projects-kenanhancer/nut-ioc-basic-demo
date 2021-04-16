@@ -1,5 +1,5 @@
 module.exports.ServiceName = ''; //fileName if empty,null or undefined
-module.exports.Service = ({ clientErrors, serverErrors }) => async (error, req, res, next) => {
+module.exports.Service = ({ clientErrors, customErrors: { serverErrors } }) => async (error, req, res, next) => {
 
     let message = '';
 

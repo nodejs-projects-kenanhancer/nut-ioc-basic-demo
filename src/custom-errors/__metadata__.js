@@ -1,6 +1,6 @@
 module.exports = {
-    Namespace: "customErrors.serverErrors",
+    Namespace: "",
     ServiceName: "", //fileName if empty,null or undefine
-    Service: ({ }) => {
+    Service: ({}) => {
     }
 };
