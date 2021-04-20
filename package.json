@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/nodejs-projects-kenanhancer/nut-ioc-basic-demo#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nut-ioc": "^1.1.4",
+    "nut-ioc": "^1.1.6",
     "swagger-parser": "^9.0.1",
     "swagger-ui-express": "^4.1.4"
   },
