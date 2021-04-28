@@ -26,7 +26,7 @@
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nut-ioc": "^1.1.6",
+    "nut-ioc": "^1.1.9",
     "swagger-parser": "^9.0.1",
     "swagger-ui-express": "^4.1.4"
   },
@@ -34,6 +34,8 @@
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
     "mockserver-client": "^5.10.0",
-    "nut-swagger": "^1.1.2"
+    "nut-swagger": "^1.1.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
   }
 }
