@@ -2,19 +2,20 @@ const nutIoc = require('nut-ioc');
 
 const nutIocContainer = nutIoc();
 
+const ignoredDependencies = ['node_modules',
+    '.env',
+    '*.json',
+    '.idea',
+    '.git',
+    '.gitignore',
+    '*.iml',
+    '.*',
+    '*.md',
+    'LICENSE'];
+
+
 
 const mainAsync = async () => {
-
-    const ignoredDependencies = ['node_modules',
-        '.env',
-        '*.json',
-        '.idea',
-        '.git',
-        '.gitignore',
-        '*.iml',
-        '.*',
-        '*.md',
-        'LICENSE'];
 
     nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
 
@@ -29,7 +30,6 @@ const mainAsync = async () => {
     });
 
     const { greetingService, authorWithContacts } = await nutIocContainer.build();
-
 
 
 
