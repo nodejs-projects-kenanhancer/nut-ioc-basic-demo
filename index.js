@@ -2,16 +2,20 @@ const nutIoc = require('nut-ioc');
 
 const nutIocContainer = nutIoc();
 
-const ignoredDependencies = ['node_modules',
+const ignoredDependencies = [
+    'node_modules',
     '.env',
-    '*.json',
     '.idea',
+    '.vscode',
+    '.DS_Store',
     '.git',
     '.gitignore',
+    'LICENSE',
+    '*.json',
     '*.iml',
     '.*',
-    '*.md',
-    'LICENSE'];
+    '*.md'
+];
 
 
 
