@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,6 @@
   },
   "homepage": "https://github.com/nodejs-projects-kenanhancer/nut-ioc-basic-demo#readme",
   "dependencies": {
-    "nut-ioc": "^1.0.1"
+    "nut-ioc": "^1.2.5"
   }
 }
