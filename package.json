@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/nodejs-projects-kenanhancer/nut-ioc-basic-demo#readme",
   "dependencies": {
-    "nut-ioc": "^1.2.6"
+    "nut-ioc": "^1.2.7"
   }
 }
