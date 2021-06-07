@@ -19,22 +19,17 @@ const ignoredDependencies = [
 
 
 
-const mainAsync = async () => {
+nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
 
-    nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
-
-    const { greetingService } = await nutIocContainer.build();
+const { greetingService } = nutIocContainer.build();
 
 
 
 
-    const helloMsg = greetingService.sayHello({ firstName: "kenan", lastName: "hancer" });
+const helloMsg = greetingService.sayHello({ firstName: "kenan", lastName: "hancer" });
 
-    console.log(helloMsg);
+console.log(helloMsg);
 
-    const goodBydMsg = greetingService.sayGoodbye({ firstName: "kenan", lastName: "hancer" });
+const goodBydMsg = greetingService.sayGoodbye({ firstName: "kenan", lastName: "hancer" });
 
-    console.log(goodBydMsg);
-};
-
-mainAsync();
+console.log(goodBydMsg);
