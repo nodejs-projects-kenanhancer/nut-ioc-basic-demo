@@ -19,31 +19,28 @@ const ignoredDependencies = [
 
 
 
-const mainAsync = async () => {
+nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
 
-    nutIocContainer.use({ dependencyPath: './', ignoredDependencies });
+nutIocContainer.useDependency({
+    ServiceName: "authorBasicInfo",
+    Service: ({ firstName: "Kenan", lastName: "Hancer" })
+});
 
-    nutIocContainer.useDependency({
-        ServiceName: "authorBasicInfo",
-        Service: ({ firstName: "Kenan", lastName: "Hancer" })
-    });
+nutIocContainer.useDependency({
+    ServiceName: "authorWithContacts",
+    Service: ({ authorBasicInfo }) => ({ ...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com" })
+});
 
-    nutIocContainer.useDependency({
-        ServiceName: "authorWithContacts",
-        Service: ({ authorBasicInfo }) => ({ ...authorBasicInfo, city: "London", mail: "kenanhancer@gmail.com" })
-    });
-
-    const { greetingService, authorWithContacts } = await nutIocContainer.build();
+const { greetingService, authorWithContacts } = nutIocContainer.build();
 
 
 
-    const helloMsg = greetingService.sayHello(authorWithContacts);
 
-    console.log(helloMsg);
 
-    const goodBydMsg = greetingService.sayGoodbye(authorWithContacts);
+const helloMsg = greetingService.sayHello(authorWithContacts);
 
-    console.log(goodBydMsg);
-};
+console.log(helloMsg);
 
-mainAsync();
+const goodBydMsg = greetingService.sayGoodbye(authorWithContacts);
+
+console.log(goodBydMsg);
