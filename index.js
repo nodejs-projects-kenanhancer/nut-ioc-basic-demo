@@ -95,7 +95,7 @@ nutIocContainer.useDependency({
 
 nutIocContainer.use({ dependencyPath: './swaggerDocuments' });
 
-const { authorWithContacts, greetingService, swaggerDefinitions } = nutIocContainer.build();
+const { authorWithContacts, greetingService, swaggerDocuments } = nutIocContainer.build();
 
 
 
@@ -112,4 +112,4 @@ console.log(goodBydMsg);
 
 console.log();
 
-console.log('swaggerDefinitions:', swaggerDefinitions);
+console.log('swaggerDocuments:', swaggerDocuments);
